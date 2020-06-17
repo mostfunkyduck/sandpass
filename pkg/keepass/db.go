@@ -109,6 +109,11 @@ func (db *Database) Entries() []*Entry {
 	return e
 }
 
+// SetOpts updated the crypto options for a database.
+func (db *Database) SetOpts(opts *Options) (err error){
+	return opts.initCryptParams(&db.cparams)
+}
+
 // Write encodes the database to a writer.
 func (db *Database) Write(w io.Writer) error {
 	if !db.staticIV {
